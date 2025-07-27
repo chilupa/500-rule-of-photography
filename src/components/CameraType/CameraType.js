@@ -1,6 +1,5 @@
 import React from "react"
-import { MenuItem } from "@material-ui/core"
-import Select from "@material-ui/core/Select"
+import { MenuItem, Select } from "@mui/material"
 
 const CameraType = ({ cropType, handleChange, cameras }) => (
   <Select value={cropType} onChange={handleChange}>

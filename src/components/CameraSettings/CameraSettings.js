@@ -1,8 +1,8 @@
 import React, { useState } from "react"
-import { Grid, Button, Snackbar, Box } from "@material-ui/core"
+import { Grid, Button, Snackbar, Box } from "@mui/material"
 import CameraType from "../CameraType/CameraType"
 import FocalLength from "../FocalLength/FocalLength"
-import { Zoom, Bounce } from "react-reveal"
+import { motion } from "framer-motion"
 import Alert from "../Alert/Alert"
 import { IoIosCamera } from "react-icons/io"
 
@@ -60,9 +60,13 @@ const CameraSettings = () => {
       spacing={4}
     >
       <Grid style={{ textAlign: "center" }} item xs={12}>
-        <Zoom>
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.5 }}
+        >
           <IoIosCamera style={{ fontSize: "3rem" }} />
-        </Zoom>
+        </motion.div>
       </Grid>
       <Grid style={{ textAlign: "center" }} item xs={12}>
         <p>
@@ -97,17 +101,25 @@ const CameraSettings = () => {
         <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
           {error ? (
             <Alert severity="error">
-              <Bounce>
+              <motion.div
+                initial={{ x: -10 }}
+                animate={{ x: 0 }}
+                transition={{ repeat: 2, duration: 0.2 }}
+              >
                 <div>Something went wrong. Please try again.</div>
-              </Bounce>
+              </motion.div>
             </Alert>
           ) : (
             <Alert severity="success">
-              <Bounce>
+              <motion.div
+                initial={{ y: -10 }}
+                animate={{ y: 0 }}
+                transition={{ repeat: 1, duration: 0.3 }}
+              >
                 <div>
                   Your shutter speed should be ~ <b>{shutterSpeed}</b> second(s)
                 </div>
-              </Bounce>
+              </motion.div>
             </Alert>
           )}
         </Snackbar>
