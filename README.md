@@ -5,7 +5,7 @@ A beautiful, modern astrophotography calculator that helps photographers determi
 ## ✨ Features
 
 - **Dark space theme** with animated twinkling stars background
-- **Modern UI** with Material-UI v5 and Inter font
+- **Modern UI** with Material-UI v5
 - **Responsive design** that works on all devices
 - **Real-time calculations** for multiple camera sensor types
 - **Smooth animations** with Framer Motion
@@ -21,7 +21,7 @@ A beautiful, modern astrophotography calculator that helps photographers determi
 
 ## 🚀 Live Demo
 
-The app is [live](https://chilupa.github.io/500th-rule-of-photography/) and deployed to GitHub Pages.
+The app is [live](https://develop.d3h3dygshkjxg9.amplifyapp.com/) and deployed to AWS Amplify.
 
 ## 💻 Development
 
