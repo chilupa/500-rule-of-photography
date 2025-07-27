@@ -9,10 +9,10 @@
     "@mui/lab": "^5.0.0-alpha.140",
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
-    "next": "^13.0.0",
+    "next": "^15.4.4",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-icons": "^4.10.0",
+
     "framer-motion": "^10.16.0",
     "typography": "^0.16.19",
     "typography-theme-fairy-gates": "^0.16.19"

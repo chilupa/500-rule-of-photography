@@ -17,7 +17,7 @@ import {
   Grid,
 } from "@mui/material"
 
-import { IoMdTime } from "react-icons/io"
+
 import StarsBackground from "../src/components/StarsBackground"
 
 export default function Home() {
@@ -132,7 +132,6 @@ export default function Home() {
                 }}
               >
                 <CardContent sx={{ textAlign: "center", py: 2.5 }}>
-                  <IoMdTime size={28} style={{ marginBottom: 12 }} />
                   <Typography variant="h4" component="div" gutterBottom>
                     {result.shutterSpeed} seconds
                   </Typography>
@@ -147,32 +146,10 @@ export default function Home() {
                       flexWrap: "wrap",
                     }}
                   >
-                    <Chip
-                      label={`${result.sensorLabel}`}
-                      size="small"
-                      sx={{
-                        bgcolor: "rgba(255,255,255,0.2)",
-                        color: "white",
-                        fontSize: "0.75rem",
-                      }}
-                    />
-                    <Chip
-                      label={`${focalLength}mm lens`}
-                      size="small"
-                      sx={{
-                        bgcolor: "rgba(255,255,255,0.2)",
-                        color: "white",
-                        fontSize: "0.75rem",
-                      }}
-                    />
+                    <Chip label={`${result.sensorLabel}`} />
+                    <Chip label={`${focalLength}mm lens`} />
                     <Chip
                       label={`${result.effectiveFocalLength}mm effective`}
-                      size="small"
-                      sx={{
-                        bgcolor: "rgba(255,255,255,0.2)",
-                        color: "white",
-                        fontSize: "0.75rem",
-                      }}
                     />
                   </Box>
                 </CardContent>
