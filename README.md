@@ -11,14 +11,6 @@ A beautiful, modern astrophotography calculator that helps photographers determi
 - **Smooth animations** with Framer Motion
 - **Clean, minimal interface** focused on essential functionality
 
-## 🛠️ Tech Stack
-
-- **Next.js 13** - React framework with static export
-- **React 18** - Modern React with hooks
-- **Material-UI v5** - Component library with dark theme
-- **Framer Motion** - Smooth animations and transitions
-- **Inter Font** - Clean, modern typography
-
 ## 🚀 Live Demo
 
 The app is [live](https://develop.d3h3dygshkjxg9.amplifyapp.com/) and deployed to AWS Amplify.
@@ -57,6 +49,6 @@ The 500 rule is a fundamental guideline in astrophotography that helps determine
 ## 📱 Supported Camera Types
 
 - **Full Frame** (1x crop factor)
-- **Canon APS-C** (1.6x crop factor) 
+- **Canon APS-C** (1.6x crop factor)
 - **Nikon/Sony APS-C** (1.5x crop factor)
 - **Micro Four Thirds** (2x crop factor)
