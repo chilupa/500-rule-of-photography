@@ -5,28 +5,29 @@
   "version": "0.1.0",
   "author": "Pavan Chilukuri",
   "dependencies": {
-    "@mui/material": "^5.14.0",
-    "@mui/lab": "^5.0.0-alpha.140",
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
-    "next": "^15.4.4",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-
+    "@mui/lab": "^5.0.0-alpha.140",
+    "@mui/material": "^5.14.0",
     "framer-motion": "^10.16.0",
-    "typography": "^0.16.19",
-    "typography-theme-fairy-gates": "^0.16.19"
+    "next": "16.2.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "suncalc": "^1.9.0"
   },
   "devDependencies": {
     "prettier": "2.1.0"
   },
   "license": "0BSD",
+  "overrides": {
+    "postcss": "^8.5.10"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "export": "next export",
+    "export": "next build",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "deploy": "next build && next export && gh-pages -d out"
+    "deploy": "next build && gh-pages -d out"
   }
 }

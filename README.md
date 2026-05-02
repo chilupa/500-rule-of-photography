@@ -1,54 +1,44 @@
-# 500 Rule Calculator ⭐
+# Photographer’s toolkit
 
-A beautiful, modern astrophotography calculator that helps photographers determine the perfect shutter speed using the 500 rule to avoid star trails in night sky photography.
+Little astro helpers that run in the browser. There’s a 500 rule calculator for star trails, plus moon phase, golden or blue hour timing, print size or DPI math, exposure equivalence, and more stuff over time. Dark UI, fine on a phone next to the tripod.
 
-## ✨ Features
+## What’s in here
 
-- **Dark space theme** with animated twinkling stars background
-- **Modern UI** with Material-UI v5
-- **Responsive design** that works on all devices
-- **Real-time calculations** for multiple camera sensor types
-- **Smooth animations** with Framer Motion
-- **Clean, minimal interface** focused on essential functionality
+- **500 rule** max shutter before trails, by crop and focal length
+- **Moon phase** rough sky brightness vibes for planning nights out
+- **Sun hours** blue and golden windows from lat long
+- **Print size** megapixels vs inches and DPI
+- **Exposure equivalence** swap ISO, aperture, shutter while staying close on brightness
 
-## 🚀 Live Demo
+Built with Next.js, MUI, Framer Motion. Static export friendly if you want to host it anywhere boring.
 
-The app is [live](https://develop.d3h3dygshkjxg9.amplifyapp.com/) and deployed to AWS Amplify.
+## Try it
 
-## 💻 Development
+There’s a [demo on Amplify](https://develop.d3h3dygshkjxg9.amplifyapp.com/) if you want to poke around without cloning.
+
+## Local dev
 
 ```bash
-# Install dependencies
 npm install
-
-# Run development server
 npm run dev
+```
 
-# Build for production
+Production build (also writes static files under `out/` when `output: export` is set):
+
+```bash
 npm run build
+```
 
-# Export static files for GitHub Pages
-npm run export
+GitHub Pages style deploy:
 
-# Deploy to GitHub Pages
+```bash
 npm run deploy
 ```
 
-## 📸 How It Works
+## 500 rule in one sentence
 
-1. **Select your camera sensor type** (Full Frame, Canon APS-C, Nikon/Sony APS-C, Micro Four Thirds)
-2. **Enter your lens focal length** in millimeters
-3. **Get instant results** showing the maximum shutter speed to avoid star trails
+Pick sensor crop and focal length, get a ballpark max shutter before stars smear: `500 ÷ (focal length × crop factor)`. Earth spins, your tripod doesn’t, so this is a rule of thumb not a law of physics.
 
-The calculator uses the formula: `500 ÷ (focal length × crop factor) = max shutter speed`
+## Sensors we crop for
 
-## 🌟 About the 500 Rule
-
-The 500 rule is a fundamental guideline in astrophotography that helps determine the longest shutter speed you can use before stars begin to show trailing due to Earth's rotation. This tool makes it easy to calculate the perfect settings for sharp, trail-free star photos.
-
-## 📱 Supported Camera Types
-
-- **Full Frame** (1x crop factor)
-- **Canon APS-C** (1.6x crop factor)
-- **Nikon/Sony APS-C** (1.5x crop factor)
-- **Micro Four Thirds** (2x crop factor)
+Full frame (1×), Canon APS C (1.6×), Nikon or Sony APS C (1.5×), Micro Four Thirds (2×).

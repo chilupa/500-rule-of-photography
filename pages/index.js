@@ -1,184 +1,222 @@
-import React, { useState } from "react"
+import React from "react"
 import Head from "next/head"
+import Link from "next/link"
 import {
-  Container,
-  Paper,
   Typography,
-  TextField,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  Button,
   Box,
   Card,
   CardContent,
   Chip,
   Grid,
+  Stack,
 } from "@mui/material"
+import PageShell from "../src/components/PageShell/PageShell"
+import { TOOLKIT_ITEMS } from "../src/constants/toolkit"
+import { glass } from "../src/styles/surfaces"
 
-
-import StarsBackground from "../src/components/StarsBackground"
+function sortToolkitLiveFirst(items) {
+  return [...items].sort((a, b) => {
+    const rank = status => (status === "live" ? 0 : 1)
+    return rank(a.status) - rank(b.status)
+  })
+}
 
 export default function Home() {
-  const [sensorType, setSensorType] = useState("")
-  const [focalLength, setFocalLength] = useState("")
-  const [result, setResult] = useState(null)
-
-  const sensorTypes = [
-    { value: "full-frame", label: "Full Frame", cropFactor: 1 },
-    { value: "canon-crop", label: "Canon APS-C (1.6x)", cropFactor: 1.6 },
-    { value: "nikon-crop", label: "Nikon/Sony APS-C (1.5x)", cropFactor: 1.5 },
-    { value: "micro-43", label: "Micro Four Thirds (2x)", cropFactor: 2 },
-  ]
-
-  const calculateShutterSpeed = () => {
-    if (!sensorType || !focalLength) return
-
-    const sensor = sensorTypes.find(s => s.value === sensorType)
-    const effectiveFocalLength = focalLength * sensor.cropFactor
-    const shutterSpeed = Math.round(500 / effectiveFocalLength)
-
-    setResult({
-      shutterSpeed,
-      effectiveFocalLength,
-      sensorLabel: sensor.label,
-    })
-  }
-
   return (
     <>
       <Head>
-        <title>Astrophotography Calculator - 500 Rule</title>
+        <title>Photographer's toolkit for astro</title>
         <meta
           name="description"
-          content="Calculate the perfect shutter speed for astrophotography to avoid star trails using the 500 rule"
+          content="Small astro calculators that run on your phone: 500 rule, moon phase, golden hour, print math, and more."
         />
       </Head>
 
-      <Container maxWidth="md" sx={{ py: 4 }}>
-        <div>
-          <StarsBackground />
-          <Box textAlign="center" mb={3}>
+      <PageShell>
+        <Stack spacing={{ xs: 4, sm: 5 }} alignItems="stretch">
+          <Box component="header" textAlign="center">
+            <Typography
+              variant="overline"
+              sx={{
+                display: "block",
+                color: "primary.light",
+                mb: 1.5,
+                opacity: 0.95,
+              }}
+            >
+              Astro toolkit
+            </Typography>
             <Typography
               variant="h3"
               component="h1"
-              gutterBottom
-              sx={{ fontWeight: "bold", color: "white" }}
+              sx={{
+                fontWeight: 700,
+                mb: 2,
+                background:
+                  "linear-gradient(125deg, #ffffff 0%, #d4e8ff 38%, #7CB8FF 72%, #6BA8F8 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
             >
-              500 Rule
+              Night sky, nailed exposure
             </Typography>
-            <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
-              Calculate the perfect shutter speed using the 500 rule to avoid
-              star trails
-            </Typography>
-          </Box>
-
-          <Paper
-            elevation={3}
-            sx={{ p: 3, mb: 3, bgcolor: "background.paper", borderRadius: 2 }}
-          >
-            <Grid container spacing={3}>
-              <Grid item xs={12} md={6}>
-                <FormControl fullWidth>
-                  <InputLabel>Camera Sensor Type</InputLabel>
-                  <Select
-                    value={sensorType}
-                    label="Camera Sensor Type"
-                    onChange={e => setSensorType(e.target.value)}
-                  >
-                    {sensorTypes.map(sensor => (
-                      <MenuItem key={sensor.value} value={sensor.value}>
-                        {sensor.label}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              </Grid>
-
-              <Grid item xs={12} md={6}>
-                <TextField
-                  fullWidth
-                  label="Focal Length (mm)"
-                  type="number"
-                  value={focalLength}
-                  onChange={e => setFocalLength(e.target.value)}
-                  inputProps={{ min: 1, max: 1000 }}
-                />
-              </Grid>
-
-              <Grid item xs={12}>
-                <Button
-                  fullWidth
-                  variant="contained"
-                  onClick={calculateShutterSpeed}
-                  disabled={!sensorType || !focalLength}
-                >
-                  Calculate Shutter Speed
-                </Button>
-              </Grid>
-            </Grid>
-          </Paper>
-
-          {result && (
-            <div>
-              <Card
-                sx={{
-                  bgcolor: "primary.main",
-                  color: "white",
-                  background:
-                    "linear-gradient(135deg, #64b5f6 0%, #42a5f5 100%)",
-                  borderRadius: 2,
-                }}
-              >
-                <CardContent sx={{ textAlign: "center", py: 2.5 }}>
-                  <Typography variant="h4" component="div" gutterBottom>
-                    {result.shutterSpeed} seconds
-                  </Typography>
-                  <Typography variant="body1" sx={{ mb: 1.5, opacity: 0.9 }}>
-                    Recommended Maximum Shutter Speed
-                  </Typography>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "center",
-                      gap: 0.8,
-                      flexWrap: "wrap",
-                    }}
-                  >
-                    <Chip label={`${result.sensorLabel}`} />
-                    <Chip label={`${focalLength}mm lens`} />
-                    <Chip
-                      label={`${result.effectiveFocalLength}mm effective`}
-                    />
-                  </Box>
-                </CardContent>
-              </Card>
-            </div>
-          )}
-
-          <Box mt={3}>
             <Typography
               variant="body1"
-              gutterBottom
-              sx={{ fontWeight: "medium" }}
+              sx={{
+                color: "text.secondary",
+                maxWidth: 520,
+                mx: "auto",
+                mb: 2.5,
+              }}
             >
-              About the 500 Rule
-            </Typography>
-            <Typography
-              variant="body2"
-              color="text.secondary"
-              sx={{ lineHeight: 1.5 }}
-            >
-              The 500 rule helps astrophotographers determine the longest
-              shutter speed they can use before stars begin to show trailing due
-              to Earth's rotation. Simply divide 500 by your effective focal
-              length (focal length × crop factor) to get the maximum shutter
-              speed in seconds.
+              Little tools for night shooters. Think 500 rule for sharp stars,
+              plus moon phase, sun windows, print sizes, and stuff still in the
+              works. Meant to read fast on your phone out by the tripod.
             </Typography>
           </Box>
-        </div>
-      </Container>
+
+          <Box component="section" aria-labelledby="toolkit-heading">
+            <Stack spacing={1} sx={{ mb: 2.5 }}>
+              <Typography
+                id="toolkit-heading"
+                variant="h6"
+                component="h2"
+                sx={{ color: "text.primary" }}
+              >
+                Essential tools
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Everything runs in the browser. No logins, no uploads, and it
+                still works when your signal is trash.
+              </Typography>
+            </Stack>
+            <Grid container spacing={2}>
+              {sortToolkitLiveFirst(TOOLKIT_ITEMS).map(item => (
+                <Grid item xs={12} sm={6} key={item.title}>
+                  <Card
+                    elevation={0}
+                    component={item.href ? Link : "div"}
+                    href={item.href}
+                    sx={{
+                      height: "100%",
+                      ...glass,
+                      borderRadius: 2,
+                      overflow: "hidden",
+                      transition:
+                        "transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease",
+                      border:
+                        item.status === "live"
+                          ? "1px solid rgba(124, 184, 255, 0.35)"
+                          : "1px solid rgba(255, 255, 255, 0.09)",
+                      textDecoration: "none",
+                      display: "block",
+                      color: "inherit",
+                      ...(item.href
+                        ? {
+                            "&:hover": {
+                              transform: "translateY(-3px)",
+                              boxShadow: "0 14px 48px rgba(0, 0, 0, 0.45)",
+                              borderColor:
+                                item.status === "live"
+                                  ? "rgba(124, 184, 255, 0.5)"
+                                  : "rgba(255, 255, 255, 0.14)",
+                            },
+                          }
+                        : {
+                            "&:hover": {
+                              transform: "translateY(-3px)",
+                              boxShadow: "0 14px 48px rgba(0, 0, 0, 0.45)",
+                              borderColor: "rgba(255, 255, 255, 0.14)",
+                            },
+                          }),
+                    }}
+                  >
+                    <CardContent
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: 1.25,
+                        p: 2.25,
+                        "&:last-child": { pb: 2.25 },
+                      }}
+                    >
+                      <Stack
+                        direction="row"
+                        alignItems="flex-start"
+                        justifyContent="space-between"
+                        gap={1}
+                      >
+                        <Typography
+                          variant="subtitle1"
+                          component="h3"
+                          sx={{ color: "text.primary", pr: 1 }}
+                        >
+                          {item.title}
+                        </Typography>
+                        <Chip
+                          size="small"
+                          label={item.status === "live" ? "Live" : "Soon"}
+                          sx={{
+                            flexShrink: 0,
+                            height: 26,
+                            fontWeight: 600,
+                            fontSize: "0.7rem",
+                            ...(item.status === "live"
+                              ? {
+                                  bgcolor: "rgba(124, 184, 255, 0.2)",
+                                  color: "primary.light",
+                                  border: "1px solid rgba(124, 184, 255, 0.35)",
+                                }
+                              : {
+                                  bgcolor: "rgba(255, 255, 255, 0.05)",
+                                  color: "text.secondary",
+                                  border: "1px solid rgba(255, 255, 255, 0.08)",
+                                }),
+                          }}
+                        />
+                      </Stack>
+                      <Typography
+                        variant="body2"
+                        color="text.secondary"
+                        sx={{ flexGrow: 1 }}
+                      >
+                        {item.description}
+                      </Typography>
+                      {item.href && (
+                        <Typography
+                          variant="body2"
+                          sx={{
+                            color: "primary.light",
+                            fontWeight: 600,
+                            mt: 0.5,
+                          }}
+                        >
+                          Open →
+                        </Typography>
+                      )}
+                    </CardContent>
+                  </Card>
+                </Grid>
+              ))}
+            </Grid>
+          </Box>
+
+          <Box
+            component="footer"
+            sx={{
+              pt: 2,
+              borderTop: "1px solid rgba(255, 255, 255, 0.07)",
+              textAlign: "center",
+            }}
+          >
+            <Typography variant="caption" color="text.secondary" component="p">
+              When it really counts, double check with your camera and the sky you
+              actually have.
+            </Typography>
+          </Box>
+        </Stack>
+      </PageShell>
     </>
   )
 }
